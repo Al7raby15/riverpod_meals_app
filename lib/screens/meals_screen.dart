@@ -3,11 +3,15 @@ import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.meals, required this.title,required this.onToggle });
+  const MealsScreen(
+      {super.key,
+      required this.meals,
+      required this.title,
+      required this.onToggle});
 
   final List<Meal> meals;
   final String title;
-final void Function(Meal meal) onToggle;
+  final void Function(Meal meal) onToggle;
   @override
   Widget build(BuildContext context) {
     Widget content = ListView.builder(
@@ -16,7 +20,54 @@ final void Function(Meal meal) onToggle;
               meal: meals[index],
               onToggle: onToggle,
             ));
-    // ListView.builder(
+
+    if (meals.isEmpty) {
+      content = const Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Text(
+            //   title,
+            //   style: const TextStyle(
+            //     color: Colors.white,
+            //   ),
+            // ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              'Uh oh .... There is no List of Meals',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              'Try another Catergory!',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          title,
+        ),
+      ),
+      body: content,
+    );
+  }
+}
+
+ // ListView.builder(
     //   itemCount: meals.length,
     //   itemBuilder: (ctx, int index) {
     //     return Column(
@@ -109,48 +160,3 @@ final void Function(Meal meal) onToggle;
     //     );
     //   },
     // );
-    if (meals.isEmpty) {
-      content = const Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Text(
-            //   title,
-            //   style: const TextStyle(
-            //     color: Colors.white,
-            //   ),
-            // ),
-            SizedBox(
-              height: 16,
-            ),
-            Text(
-              'Uh oh .... There is no List of Meals',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Text(
-              'Try another Catergory!',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
-      );
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          title,
-        ),
-      ),
-      body: content,
-    );
-  }
-}
