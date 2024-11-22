@@ -24,9 +24,9 @@ class MealItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final width = MediaQuery.of(context).size.width;
-      print('width: ${width}');
+      print('width: $width');
       final height = MediaQuery.of(context).size.height;
-      print('height: ${height}');
+      print('height: $height');
 
       // print(constraints.minWidth);
       // print(constraints.maxWidth);
