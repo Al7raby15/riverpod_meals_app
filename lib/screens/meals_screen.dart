@@ -3,17 +3,18 @@ import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.meals, required this.title});
+  const MealsScreen({super.key, required this.meals, required this.title,required this.onToggle });
 
   final List<Meal> meals;
   final String title;
-
+final void Function(Meal meal) onToggle;
   @override
   Widget build(BuildContext context) {
     Widget content = ListView.builder(
         itemCount: meals.length,
         itemBuilder: (ctx, int index) => MealItem(
               meal: meals[index],
+              onToggle: onToggle,
             ));
     // ListView.builder(
     //   itemCount: meals.length,

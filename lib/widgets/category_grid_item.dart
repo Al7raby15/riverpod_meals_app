@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/data/dummy_data.dart';
 import 'package:meals_app/models/category.dart';
+import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/meals_screen.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem({super.key, required this.category});
+  const CategoryGridItem(
+      {super.key, required this.category, required this.onToggle});
 
   final Category category;
+  final void Function(Meal meal) onToggle;
   @override
   Widget build(BuildContext context) {
     final filteredMeal = dummyMeals
@@ -21,8 +24,11 @@ class CategoryGridItem extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    MealsScreen(meals: filteredMeal, title: category.title)));
+                builder: (context) => MealsScreen(
+                      meals: filteredMeal,
+                      title: category.title,
+                      onToggle: onToggle,
+                    )));
       },
       splashColor: Theme.of(context).primaryColor,
       child: Container(
